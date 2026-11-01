@@ -49,7 +49,7 @@ client/                          server/
 │  ├─ AgentConsole.tsx            ├─ src/paypal/       client.ts (OAuth) · orders.ts · mock.ts
 │  ├─ Banner.tsx                  └─ src/routes/       events · storefront · mandate · agent
 │  └─ AuditGrid.tsx  AG Grid
-└─ index.css        control-room theme
+└─ index.css        neo-brutalist theme (chosen from docs/flavors/)
 ```
 
 **The guard** (`server/src/agent/guard.ts`) is the security core: `create_order` requires

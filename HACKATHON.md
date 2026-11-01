@@ -78,6 +78,14 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   docs/video-script.md (2:45 timed), docs/submission-checklist.md (owner actions marked).
   BUILD PHASE COMPLETE. Remaining: GitHub push, video recording, Devpost submission —
   all require the USER's accounts.
+- 2026-11-01: **UI REPLACED per user call ("UI is trash")** — image-gen had no credits,
+  so 5 real-CSS flavor mockups built + Playwright-screenshotted in docs/flavors/
+  (neo-brutalist, swiss-precision, phosphor-terminal, warm-premium, consumer-soft).
+  User picked **NEO-BRUTALIST**: cream paper #faf3e3, 3px black borders, hard offset
+  shadows, acid-yellow #ffe500 + signal-red #e5361f, heavy grotesk + mono data.
+  Full index.css rewrite + AG Grid Theming API params to match. Old "control room"
+  dark-slate direction RETIRED. Gates re-verified: typecheck, build, E2E 3/3.
+  Screenshots: docs/screenshot-landing.png, docs/screenshot-violation.png.
 
 ## Artifacts
 - Research brief: docs/research-brief.md ✓ (full: outputs/paypal-ai-hackathon-win.md ✓)

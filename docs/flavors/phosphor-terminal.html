@@ -1,0 +1,107 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+
+  :root{--bg:#071009;--green:#3dff7c;--dim:#1f8a4a;--amber:#ffb000;--red:#ff4d4d;}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--green);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;position:relative}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.28) 2px 4px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--dim)}
+  .brand{font-size:14px;font-weight:700;letter-spacing:.14em;text-shadow:0 0 8px rgba(61,255,124,.8)}
+  .chips{display:flex;gap:14px}
+  .chip{font-size:10px;padding:4px 9px;border:1px solid var(--dim);color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.7)}
+  .chip.ghost{color:var(--dim);text-shadow:none}
+  .banner{display:flex;align-items:center;gap:14px;padding:10px 18px;background:rgba(255,77,77,.12);border-top:1px solid var(--red);border-bottom:1px solid var(--red)}
+  .banner-tag{font-size:11px;font-weight:700;color:#071009;background:var(--red);padding:5px 10px;text-shadow:none;letter-spacing:.08em}
+  .banner span:last-child{font-size:12px;color:var(--red);text-shadow:0 0 7px rgba(255,77,77,.8)}
+  .panels{display:grid;grid-template-columns:1.2fr 1fr 1.1fr}
+  .panel{padding:16px 18px;border-right:1px solid var(--dim)}
+  .panel:last-child{border-right:none}
+  h3{font-size:10.5px;letter-spacing:.14em;color:var(--dim);margin-bottom:12px}
+  h3::before{content:"┌─ "}
+  .row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dotted rgba(31,138,74,.5)}
+  .row div{flex:1;min-width:0}
+  .row b{display:block;font-size:12px;font-weight:400;text-shadow:0 0 6px rgba(61,255,124,.5)}
+  .row i{font-size:10px;font-style:normal;color:var(--dim)}
+  .tag{font-size:9.5px;padding:2px 6px;border:1px solid var(--dim);color:var(--dim)}
+  .tag.danger{color:var(--red);border-color:var(--red)}
+  .price{font-size:12px;min-width:60px;text-align:right;color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.6)}
+  .row.dim b{color:var(--dim);text-shadow:none}
+  .mandate{border:1px solid var(--dim);padding:12px;background:rgba(61,255,124,.03)}
+  .m-head{display:flex;justify-content:space-between;margin-bottom:10px}
+  .badge{font-size:10px;color:var(--green);border:1px solid var(--green);padding:3px 8px;text-shadow:0 0 6px rgba(61,255,124,.7)}
+  .mono{font-family:inherit}
+  dl{display:grid;gap:5px}
+  dl div{display:flex;justify-content:space-between;font-size:11.5px}
+  dt{color:var(--dim)}
+  .strong{color:var(--amber);text-shadow:0 0 6px rgba(255,176,0,.6)}
+  .sig{margin-top:10px;font-size:10px;color:var(--dim);border-top:1px dashed var(--dim);padding-top:8px}
+  .goal{font-size:11.5px;color:var(--dim);margin-bottom:10px}
+  .btns{display:grid;gap:7px;margin-bottom:12px}
+  .btn{font:12px/1 ui-monospace,monospace;padding:10px 12px;border:1px solid var(--green);background:transparent;color:var(--green);cursor:pointer;text-align:left;text-shadow:0 0 6px rgba(61,255,124,.6)}
+  .btn.primary{background:rgba(61,255,124,.12)}
+  .btn.danger{border-color:var(--red);color:var(--red);text-shadow:0 0 6px rgba(255,77,77,.7)}
+  .blocked{border:1px solid var(--red);padding:10px;background:rgba(255,77,77,.07)}
+  .badge-bad{font-size:10px;color:#071009;background:var(--red);padding:3px 8px;display:inline-block;margin-bottom:6px;font-weight:700}
+  .blocked p{font-size:11px;line-height:1.6;color:var(--red)}
+  .blocked b{color:#fff}
+  .audit{border-top:1px solid var(--dim)}
+  .audit-head{display:flex;justify-content:space-between;padding:9px 18px;font-size:10px;letter-spacing:.14em;color:var(--dim);border-bottom:1px solid var(--dim)}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  .th th{text-align:left;padding:7px 18px;font-size:9.5px;color:var(--dim);font-weight:400;border-bottom:1px solid var(--dim);letter-spacing:.1em}
+  td{padding:5px 18px;border-bottom:1px dotted rgba(31,138,74,.4)}
+  .v-info{color:var(--dim)}
+  .v-ok{color:var(--green)}
+  .v-blocked{color:var(--red);text-shadow:0 0 6px rgba(255,77,77,.7)}
+  .bad-row{background:rgba(255,77,77,.08)}
+  .dim{color:var(--dim)}
+</style></head><body>
+<div class="topbar">
+  <div class="brand">MANDATE STOREFRONT</div>
+  <div class="chips"><span class="chip">PAYPAL: DEMO MODE</span><span class="chip">LLM: SCRIPTED FALLBACK</span><span class="chip ghost">Reset demo</span></div>
+</div>
+<div class="banner"><span class="banner-tag">SPEND MANDATE VIOLATION</span><span>create_order was never invoked — the item category was outside mandate scope.</span></div>
+<div class="panels">
+  <section class="panel">
+    <h3>Storefront — agent-readable catalog</h3>
+    <div class="row"><div><b>Aria HD-700 Over-Ear</b><i>aria-hd-700 · ★4.8 · 12 in stock</i></div><span class="tag">headphones</span><span class="price">$34.99</span></div>
+    <div class="row"><div><b>Aria HD-900 Reference</b><i>aria-hd-900 · ★4.9 · 4 in stock</i></div><span class="tag">headphones</span><span class="price">$89.99</span></div>
+    <div class="row"><div><b>Aria IEM-5 In-Ear Monitors</b><i>aria-imo-5 · ★4.6 · 20 in stock</i></div><span class="tag">headphones</span><span class="price">$24.99</span></div>
+    <div class="row"><div><b>Braided Audio Cable 2m</b><i>aria-cbl-braid · ★4.4 · 40 in stock</i></div><span class="tag">cables</span><span class="price">$24.99</span></div>
+    <div class="row dim"><div><b>Aria Studio Monitors (pair)</b><i>aria-mon-299 · ★4.7 · 2 in stock</i></div><span class="tag danger">studio-monitors</span><span class="price">$299.00</span></div>
+  </section>
+  <section class="panel">
+    <h3>Spend Mandate — signed consent</h3>
+    <div class="mandate">
+      <div class="m-head"><span class="badge">ACTIVE</span><span class="mono dim">mnd_0d1a8e0f396d</span></div>
+      <dl>
+        <div><dt>Cap</dt><dd class="mono">$40.00</dd></div>
+        <div><dt>Spent</dt><dd class="mono">$34.99</dd></div>
+        <div><dt>Remaining</dt><dd class="mono strong">$5.01</dd></div>
+        <div><dt>Scope</dt><dd class="mono">cables, headphones</dd></div>
+        <div><dt>Expires</dt><dd class="mono">05:14:33</dd></div>
+      </dl>
+      <div class="sig mono">HMAC-SHA256 · a8cad037e2edaa3060…</div>
+    </div>
+  </section>
+  <section class="panel">
+    <h3>Agent Console</h3>
+    <p class="goal">Agent picks the best in-scope item, verifies the mandate, opens a PayPal order.</p>
+    <div class="btns"><button class="btn primary">Run: compliant goal</button><button class="btn danger">Run: violation goal</button></div>
+    <div class="blocked">
+      <span class="badge-bad">BLOCKED</span>
+      <p><b>OUT_OF_SCOPE</b> — studio-monitors is outside scope [cables, headphones].<br>No PayPal order was created.</p>
+    </div>
+  </section>
+</div>
+<div class="audit">
+  <div class="audit-head">AUDIT LOG — AG GRID COMMUNITY<span class="dim">7 EVENTS · EVERY TOOL CALL · EVERY VERDICT</span></div>
+  <table>
+    <tr class="th"><th>TIME</th><th>ACTOR</th><th>TOOL</th><th>VERDICT</th><th>SUMMARY</th></tr>
+    <tr><td>10:44:55</td><td>system</td><td>boot</td><td class="v-info">INFO</td><td>Mandate Storefront API listening on :3001</td></tr>
+    <tr><td>10:44:58</td><td>user</td><td>mint_mandate</td><td class="v-ok">OK</td><td>Mandate mnd_0d1a8e0f396d minted — cap $40.00, scope [cables, headphones]</td></tr>
+    <tr><td>10:45:01</td><td>agent</td><td>list_storefront</td><td class="v-info">INFO</td><td>Read catalog — 9 SKUs</td></tr>
+    <tr><td>10:45:04</td><td>agent</td><td>compare_items</td><td class="v-ok">OK</td><td>Best in-scope ≤ $40.00: Aria HD-700 Over-Ear (★4.8)</td></tr>
+    <tr><td>10:45:07</td><td>agent</td><td>create_order</td><td class="v-ok">OK</td><td>Order MOCK-0001-8K2 — PAYER APPROVAL REQUIRED ($34.99)</td></tr>
+    <tr class="bad-row"><td>10:45:12</td><td>agent</td><td>verify_mandate</td><td class="v-blocked">BLOCKED</td><td>✗ OUT_OF_SCOPE — studio-monitors · $299.00 attempt</td></tr>
+    <tr class="bad-row"><td>10:45:12</td><td>agent</td><td>create_order</td><td class="v-blocked">BLOCKED</td><td>SPEND MANDATE VIOLATION — create_order never invoked</td></tr>
+  </table>
+</div></body></html>

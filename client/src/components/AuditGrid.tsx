@@ -18,14 +18,14 @@ export interface AuditEvent {
   detail?: unknown;
 }
 
-/** Theming API (v33+) — dark params match the control-room palette. */
+/** Theming API (v33+) — NEO-BRUTALIST params: cream paper, yellow headers, black rules. */
 const theme = themeQuartz.withParams({
-  backgroundColor: "#0d1526",
-  foregroundColor: "#d7e1f2",
-  headerBackgroundColor: "#101a2e",
-  headerTextColor: "#8296b5",
-  borderColor: "#1e2a44",
-  chromeBackgroundColor: "#101a2e",
+  backgroundColor: "#faf3e3",
+  foregroundColor: "#000000",
+  headerBackgroundColor: "#ffe500",
+  headerTextColor: "#000000",
+  borderColor: "#000000",
+  chromeBackgroundColor: "#faf3e3",
   fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
   fontSize: 12,
   rowHeight: 26,

@@ -1,0 +1,105 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+
+  :root{--bg:#faf3e3;--ink:#000;--accent:#ffe500;--red:#e5361f;--green:#1a7f2e;--dim:#5c5c5c;}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:3px solid #000;background:var(--accent)}
+  .brand{font-weight:900;font-size:20px;letter-spacing:-0.02em;text-transform:uppercase}
+  .chips{display:flex;gap:8px}
+  .chip{font:700 11px/1 ui-monospace,monospace;padding:6px 10px;border:2px solid #000;background:#fff;box-shadow:3px 3px 0 #000}
+  .chip.ghost{background:transparent;box-shadow:none}
+  .banner{display:flex;align-items:center;gap:14px;padding:12px 20px;background:var(--red);color:#fff;border-bottom:3px solid #000}
+  .banner-tag{font:900 12px/1 system-ui;text-transform:uppercase;background:#000;color:var(--accent);padding:8px 12px;letter-spacing:.05em}
+  .banner span:last-child{font-weight:700;font-size:14px}
+  .panels{display:grid;grid-template-columns:1.2fr 1fr 1.1fr}
+  .panel{padding:18px 20px;border-right:3px solid #000}
+  .panel:last-child{border-right:none}
+  h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid #000}
+  .row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:2px solid #000}
+  .row div{flex:1;min-width:0}
+  .row b{display:block;font-size:13px;font-weight:800}
+  .row i{font:11px/1.4 ui-monospace,monospace;font-style:normal;color:var(--dim)}
+  .tag{font:700 10px/1 ui-monospace,monospace;padding:4px 7px;border:2px solid #000;background:#fff}
+  .tag.danger{background:var(--red);color:#fff}
+  .price{font:900 14px/1 ui-monospace,monospace;min-width:64px;text-align:right}
+  .row.dim b{color:var(--dim)}
+  .mandate{border:3px solid #000;background:#fff;box-shadow:6px 6px 0 #000;padding:14px}
+  .m-head{display:flex;justify-content:space-between;margin-bottom:12px}
+  .badge{font:900 11px/1 system-ui;background:var(--green);color:#fff;padding:6px 10px;border:2px solid #000}
+  .mono{font-family:ui-monospace,monospace}
+  dl{display:grid;gap:7px}
+  dl div{display:flex;justify-content:space-between;font:13px/1 system-ui;font-weight:700;border-bottom:2px dotted #000;padding-bottom:5px}
+  dt{font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.06em}
+  .strong{background:var(--accent);padding:2px 6px;border:2px solid #000}
+  .sig{margin-top:12px;font-size:11px;background:#000;color:var(--accent);padding:8px 10px}
+  .goal{font-size:13px;font-weight:600;margin-bottom:12px}
+  .btns{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .btn{font:900 13px/1 system-ui;padding:12px 14px;border:3px solid #000;background:#fff;cursor:pointer;text-align:left;box-shadow:4px 4px 0 #000}
+  .btn.primary{background:var(--accent)}
+  .btn.danger{background:#000;color:var(--red)}
+  .blocked{border:3px solid var(--red);background:#fff;box-shadow:6px 6px 0 var(--red);padding:12px}
+  .badge-bad{font:900 11px/1 system-ui;background:var(--red);color:#fff;padding:6px 10px;display:inline-block;margin-bottom:8px}
+  .blocked p{font-size:12.5px;line-height:1.5}
+  .audit{border-top:3px solid #000}
+  .audit-head{display:flex;justify-content:space-between;padding:10px 20px;background:#000;color:var(--accent);font:900 11px/1 system-ui;letter-spacing:.12em;text-transform:uppercase}
+  .audit-head .dim{color:#fff;font-weight:700}
+  table{width:100%;border-collapse:collapse;font:12px/1.4 ui-monospace,monospace}
+  .th th{background:var(--accent);text-align:left;padding:8px 20px;font-weight:900;border-bottom:3px solid #000;font-size:11px;letter-spacing:.08em}
+  td{padding:7px 20px;border-bottom:2px solid #000;vertical-align:top}
+  .v-info{color:var(--dim);font-weight:800}
+  .v-ok{color:var(--green);font-weight:900}
+  .v-blocked{color:#fff;background:var(--red);font-weight:900}
+  .bad-row{background:#ffe9e5}
+  .dim{color:var(--dim)}
+</style></head><body>
+<div class="topbar">
+  <div class="brand">MANDATE STOREFRONT</div>
+  <div class="chips"><span class="chip">PAYPAL: DEMO MODE</span><span class="chip">LLM: SCRIPTED FALLBACK</span><span class="chip ghost">Reset demo</span></div>
+</div>
+<div class="banner"><span class="banner-tag">SPEND MANDATE VIOLATION</span><span>create_order was never invoked — the item category was outside mandate scope.</span></div>
+<div class="panels">
+  <section class="panel">
+    <h3>Storefront — agent-readable catalog</h3>
+    <div class="row"><div><b>Aria HD-700 Over-Ear</b><i>aria-hd-700 · ★4.8 · 12 in stock</i></div><span class="tag">headphones</span><span class="price">$34.99</span></div>
+    <div class="row"><div><b>Aria HD-900 Reference</b><i>aria-hd-900 · ★4.9 · 4 in stock</i></div><span class="tag">headphones</span><span class="price">$89.99</span></div>
+    <div class="row"><div><b>Aria IEM-5 In-Ear Monitors</b><i>aria-imo-5 · ★4.6 · 20 in stock</i></div><span class="tag">headphones</span><span class="price">$24.99</span></div>
+    <div class="row"><div><b>Braided Audio Cable 2m</b><i>aria-cbl-braid · ★4.4 · 40 in stock</i></div><span class="tag">cables</span><span class="price">$24.99</span></div>
+    <div class="row dim"><div><b>Aria Studio Monitors (pair)</b><i>aria-mon-299 · ★4.7 · 2 in stock</i></div><span class="tag danger">studio-monitors</span><span class="price">$299.00</span></div>
+  </section>
+  <section class="panel">
+    <h3>Spend Mandate — signed consent</h3>
+    <div class="mandate">
+      <div class="m-head"><span class="badge">ACTIVE</span><span class="mono dim">mnd_0d1a8e0f396d</span></div>
+      <dl>
+        <div><dt>Cap</dt><dd class="mono">$40.00</dd></div>
+        <div><dt>Spent</dt><dd class="mono">$34.99</dd></div>
+        <div><dt>Remaining</dt><dd class="mono strong">$5.01</dd></div>
+        <div><dt>Scope</dt><dd class="mono">cables, headphones</dd></div>
+        <div><dt>Expires</dt><dd class="mono">05:14:33</dd></div>
+      </dl>
+      <div class="sig mono">HMAC-SHA256 · a8cad037e2edaa3060…</div>
+    </div>
+  </section>
+  <section class="panel">
+    <h3>Agent Console</h3>
+    <p class="goal">Agent picks the best in-scope item, verifies the mandate, opens a PayPal order.</p>
+    <div class="btns"><button class="btn primary">Run: compliant goal</button><button class="btn danger">Run: violation goal</button></div>
+    <div class="blocked">
+      <span class="badge-bad">BLOCKED</span>
+      <p><b>OUT_OF_SCOPE</b> — studio-monitors is outside scope [cables, headphones].<br>No PayPal order was created.</p>
+    </div>
+  </section>
+</div>
+<div class="audit">
+  <div class="audit-head">AUDIT LOG — AG GRID COMMUNITY<span class="dim">7 EVENTS · EVERY TOOL CALL · EVERY VERDICT</span></div>
+  <table>
+    <tr class="th"><th>TIME</th><th>ACTOR</th><th>TOOL</th><th>VERDICT</th><th>SUMMARY</th></tr>
+    <tr><td>10:44:55</td><td>system</td><td>boot</td><td class="v-info">INFO</td><td>Mandate Storefront API listening on :3001</td></tr>
+    <tr><td>10:44:58</td><td>user</td><td>mint_mandate</td><td class="v-ok">OK</td><td>Mandate mnd_0d1a8e0f396d minted — cap $40.00, scope [cables, headphones]</td></tr>
+    <tr><td>10:45:01</td><td>agent</td><td>list_storefront</td><td class="v-info">INFO</td><td>Read catalog — 9 SKUs</td></tr>
+    <tr><td>10:45:04</td><td>agent</td><td>compare_items</td><td class="v-ok">OK</td><td>Best in-scope ≤ $40.00: Aria HD-700 Over-Ear (★4.8)</td></tr>
+    <tr><td>10:45:07</td><td>agent</td><td>create_order</td><td class="v-ok">OK</td><td>Order MOCK-0001-8K2 — PAYER APPROVAL REQUIRED ($34.99)</td></tr>
+    <tr class="bad-row"><td>10:45:12</td><td>agent</td><td>verify_mandate</td><td class="v-blocked">BLOCKED</td><td>✗ OUT_OF_SCOPE — studio-monitors · $299.00 attempt</td></tr>
+    <tr class="bad-row"><td>10:45:12</td><td>agent</td><td>create_order</td><td class="v-blocked">BLOCKED</td><td>SPEND MANDATE VIOLATION — create_order never invoked</td></tr>
+  </table>
+</div></body></html>
