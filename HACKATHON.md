@@ -78,6 +78,17 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   docs/video-script.md (2:45 timed), docs/submission-checklist.md (owner actions marked).
   BUILD PHASE COMPLETE. Remaining: GitHub push, video recording, Devpost submission —
   all require the USER's accounts.
+- 2026-11-01: **DOCKER PATH FOR JUDGES (verified)** — added Dockerfile (node:22-alpine,
+  dev-mode container = identical flow to `npm run dev`), .dockerignore (`.env` never
+  baked in), compose.yml with optional env_file (`required: false` → zero-cred path
+  works out of the box) + healthcheck on /api/health. Also fixed a latent trap found
+  while deciding: README claimed "Node 20+" but the scripts use Node-native
+  `--env-file-if-exists` (needs ≥22.9) — now `engines: ">=22.9"` + README corrected,
+  Docker is the documented alternative for no-Node machines. Verified by building the
+  image and running the full UI smoke against the container: chips, mint, compliant
+  run + capture, violation banner all pass; health endpoint healthy; zero-cred run
+  reports SCRIPTED FALLBACK as designed. Not required by rules (npm path already
+  satisfies "clear, complete setup") — shipped as judge ergonomics.
 - 2026-11-01: **VIDEO REHEARSAL + GRID TAIL FIX** — automated rehearsal of the exact
   recording sequence (chips → mint → canned compliant → capture → re-mint → live-LLM
   free-text → violation → reset) surfaced a real demo-blocking UX bug: AG Grid

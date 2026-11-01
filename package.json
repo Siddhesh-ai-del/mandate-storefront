@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.9"
+  },
   "scripts": {
     "dev": "concurrently -n server,client -c blue,magenta \"tsx --env-file-if-exists=.env server/index.ts\" \"vite\"",
     "build": "vite build",

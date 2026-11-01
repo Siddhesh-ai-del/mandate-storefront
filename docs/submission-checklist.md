@@ -13,7 +13,10 @@
   - [ ] Add About topics: `paypal`, `ai-agents`, `agentic-commerce`, `ag-grid` (owner, 15s)
 - [x] **Functional demo judges can run** — satisfied by option 1 (repo instructions;
   hosted URL is the alternative and stays cut). Fresh-clone rehearsal green:
-  install → typecheck → 8/8 → build → 3/3 E2E on a clean machine
+  install → typecheck → 8/8 → build → 3/3 E2E on a clean machine. **Plus Docker**:
+  `docker compose up` → app on :5173, image built + full UI smoke verified in-container
+  (both with .env → LLM: LIVE and without → SCRIPTED FALLBACK); node:22.9+ trap fixed
+  (`engines` + README) so the npm path can't fail on old Node
   - [ ] T-24h / T-2h re-run of the rehearsal on pushed HEAD (below)
 - [ ] **Text description** — How We Built It draft below
 - [ ] **Tools: name the AI model/service + explain how used** — draft below

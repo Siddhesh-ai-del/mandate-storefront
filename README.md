@@ -75,13 +75,22 @@ infrastructure (in-memory state, no auth, single tenant — by design).
 
 ## Installation
 
-Requires [Node.js](https://nodejs.org) 20+ and npm.
+Requires [Node.js](https://nodejs.org) **22.9+** and npm (the dev scripts use the
+Node-native `--env-file-if-exists` flag). No local Node? Use Docker below.
 
 ```bash
 git clone https://github.com/Siddhesh-ai-del/mandate-storefront.git
 cd mandate-storefront
 npm install
 npm run dev        # API on :3001, app on http://localhost:5173
+```
+
+Or with Docker (no Node install needed):
+
+```bash
+git clone https://github.com/Siddhesh-ai-del/mandate-storefront.git
+cd mandate-storefront
+docker compose up  # app on http://localhost:5173
 ```
 
 Open http://localhost:5173 — no credentials required. Optional integrations
