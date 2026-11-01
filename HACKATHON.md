@@ -1,11 +1,12 @@
 # HACKATHON STATE — PayPal AI Hackathon (REAL RUN)
 
-Status: phase-4 | build — P4 ✅ (slices 1–9) · next: P5 harden+polish (slices 10–12)
+Status: phase-5 | win-package — build COMPLETE (6 commits, all gates green) · video + submission need USER (accounts)
 
 ## Resume instructions (for next session)
-1. Read this file + docs/plan.md → continue from the current build slice
+1. Read this file + docs/submission-checklist.md → the build is DONE; remaining items
+   need the user's accounts (GitHub push, YouTube video, Devpost submit)
 2. Deadline: Nov 12 12:00 PT (20:00 UTC) — recompute on resume
-3. All research/ideation/blueprint artifacts are on disk and complete
+3. Verify gates on resume before any push: typecheck, vitest 8/8, e2e 3/3, build
 Deadline: 2026-11-12 12:00 PT (20:00 UTC) — Submissions close
 Time remaining: ~11 days (as of Nov 1, 2026)
 
@@ -69,6 +70,14 @@ Time remaining: ~11 days (as of Nov 1, 2026)
 - 2026-11-01: P4 (slices 8–9) DONE — PayPal sandbox facade (OAuth token cache, Orders v2
   create/poll/capture, auto-degrade to mock), live LLM tool-calling loop with 10s timeout
   + canned fallback, run-free endpoint (409 without LLM). Commit 2673f11.
+- 2026-11-01: P5 (slices 10–11) DONE — Playwright E2E 3/3 (golden flow, violation block,
+  reset), AG Grid v36 Theming API (killed error #239), banner slam + reduced-motion,
+  full reset button, 375px overflow fixed (0px verified), security-audit clean.
+  Commit cbea9b4.
+- 2026-11-01: Slice 12 artifacts — README.md (judge-interface style, criteria mapping),
+  docs/video-script.md (2:45 timed), docs/submission-checklist.md (owner actions marked).
+  BUILD PHASE COMPLETE. Remaining: GitHub push, video recording, Devpost submission —
+  all require the USER's accounts.
 
 ## Artifacts
 - Research brief: docs/research-brief.md ✓ (full: outputs/paypal-ai-hackathon-win.md ✓)
