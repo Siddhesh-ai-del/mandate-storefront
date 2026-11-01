@@ -21,6 +21,11 @@ export default function App() {
   const [spentCents, setSpentCents] = useState(0);
   const [blocked, setBlocked] = useState<RunOutcome | null>(null);
 
+  async function resetDemo() {
+    await fetch("/api/demo/reset", { method: "POST" }).catch(() => {});
+    window.location.reload();
+  }
+
   useEffect(() => {
     fetch("/api/health")
       .then((r) => r.json())
@@ -55,6 +60,9 @@ export default function App() {
         <span className="chip" data-tone={conn === "live" ? "ok" : "warn"}>
           audit: {conn}
         </span>
+        <button className="btn ghost reset-btn" onClick={resetDemo} title="Reset all demo state">
+          Reset demo
+        </button>
       </header>
 
       <Banner outcome={blocked} onDismiss={() => setBlocked(null)} />

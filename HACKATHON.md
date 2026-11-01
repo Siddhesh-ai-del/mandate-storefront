@@ -1,6 +1,6 @@
 # HACKATHON STATE — PayPal AI Hackathon (REAL RUN)
 
-Status: phase-4 | build — P3 ✅ (slices 1–7) · next: P4 sandbox+LLM (slices 8–9)
+Status: phase-4 | build — P4 ✅ (slices 1–9) · next: P5 harden+polish (slices 10–12)
 
 ## Resume instructions (for next session)
 1. Read this file + docs/plan.md → continue from the current build slice
@@ -66,6 +66,9 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   mock Orders v2, approve-as-payer flow, BLOCKED slam banner. Golden flow smoke
   verified end-to-end (compliant→approve→capture→cap decrement; violation→BLOCKED;
   double-approve→409). Commit 8235660.
+- 2026-11-01: P4 (slices 8–9) DONE — PayPal sandbox facade (OAuth token cache, Orders v2
+  create/poll/capture, auto-degrade to mock), live LLM tool-calling loop with 10s timeout
+  + canned fallback, run-free endpoint (409 without LLM). Commit 2673f11.
 
 ## Artifacts
 - Research brief: docs/research-brief.md ✓ (full: outputs/paypal-ai-hackathon-win.md ✓)

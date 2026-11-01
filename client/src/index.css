@@ -42,6 +42,7 @@ body {
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
   background: var(--panel-2);
+  flex-wrap: wrap;
 }
 .topbar h1 {
   font-size: 15px;
@@ -51,6 +52,11 @@ body {
 .topbar .sub {
   color: var(--muted);
   font-size: 12px;
+}
+@media (max-width: 700px) {
+  .topbar .sub {
+    display: none;
+  }
 }
 .chip {
   font: 11px/1 var(--mono);
@@ -86,6 +92,7 @@ body {
   padding: 14px 16px;
   overflow: auto;
   min-height: 0;
+  min-width: 0;
 }
 .panel h2 {
   margin: 0 0 4px;
@@ -110,6 +117,8 @@ body {
   background: var(--panel-2);
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 .audit-dock .dock-head {
   display: flex;
@@ -121,6 +130,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
+  flex-wrap: wrap;
 }
 .dock-head .count {
   font-family: var(--mono);
@@ -129,6 +139,7 @@ body {
 .grid-wrap {
   flex: 1;
   min-height: 0;
+  min-width: 0;
 }
 
 @media (max-width: 900px) {
@@ -191,6 +202,21 @@ body {
 }
 .ok-text {
   color: var(--ok);
+}
+
+/* --- Audit grid verdict cells --- */
+.verdict-ok {
+  color: var(--ok);
+  font-weight: 600;
+}
+.verdict-warn {
+  color: var(--warn);
+  font-weight: 600;
+}
+.verdict-blocked {
+  color: var(--bad);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--bad) 14%, transparent);
 }
 
 /* --- Mandate --- */
@@ -370,7 +396,18 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* --- The slam banner --- */
+/* --- The slam banner (signature animation: slams down from the top) --- */
+@keyframes slam {
+  0% {
+    transform: translateY(-100%);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .banner {
   display: flex;
   align-items: center;
@@ -378,6 +415,12 @@ body {
   padding: 10px 16px;
   background: color-mix(in srgb, var(--bad) 18%, var(--bg));
   border-bottom: 2px solid var(--bad);
+  animation: slam 280ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner {
+    animation: none;
+  }
 }
 .banner-tag {
   font: 700 12px/1 var(--mono);
@@ -403,6 +446,12 @@ body {
 }
 .banner-x:hover {
   color: var(--text);
+}
+
+/* --- Reset (topbar) --- */
+.reset-btn {
+  font-size: 12px;
+  padding: 5px 10px;
 }
 
 /* --- Free-text goal (LLM live only) --- */

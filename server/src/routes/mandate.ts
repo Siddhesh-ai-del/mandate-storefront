@@ -16,6 +16,10 @@ export interface StoredMandate {
 }
 export const mandates = new Map<string, StoredMandate>();
 
+export function resetMandates(): void {
+  mandates.clear();
+}
+
 const mintSchema = z.object({
   capCents: z.number().int().positive().max(1_000_00),
   expiresInSec: z.number().int().min(60).max(3600),

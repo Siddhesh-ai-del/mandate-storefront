@@ -1,7 +1,10 @@
 import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, ModuleRegistry, type ColDef } from "ag-grid-community";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.css";
+import {
+  AllCommunityModule,
+  ModuleRegistry,
+  themeQuartz,
+  type ColDef,
+} from "ag-grid-community";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -14,6 +17,21 @@ export interface AuditEvent {
   summary: string;
   detail?: unknown;
 }
+
+/** Theming API (v33+) — dark params match the control-room palette. */
+const theme = themeQuartz.withParams({
+  backgroundColor: "#0d1526",
+  foregroundColor: "#d7e1f2",
+  headerBackgroundColor: "#101a2e",
+  headerTextColor: "#8296b5",
+  borderColor: "#1e2a44",
+  chromeBackgroundColor: "#101a2e",
+  fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
+  fontSize: 12,
+  rowHeight: 26,
+  headerHeight: 30,
+  spacing: 6,
+});
 
 const colDefs: ColDef<AuditEvent>[] = [
   {
@@ -37,16 +55,14 @@ const colDefs: ColDef<AuditEvent>[] = [
 
 export function AuditGrid({ events }: { events: AuditEvent[] }) {
   return (
-    <div className="ag-theme-quartz" style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <AgGridReact
+        theme={theme}
         rowData={events}
         columnDefs={colDefs}
         getRowId={(p) => String(p.data.id)}
         animateRows={false}
-        suppressCellFocus={false}
-        rowHeight={26}
-        headerHeight={30}
-        defaultColDef={{ sortable: false, resizable: false, suppressHeaderMenuButton: true }}
+        defaultColDef={{ sortable: false, resizable: false }}
       />
     </div>
   );

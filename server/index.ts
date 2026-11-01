@@ -8,6 +8,8 @@ import { log, reset as resetAudit } from "./src/audit/bus";
 import { isDegraded as paypalDegraded, mode as paypalMode, resetPaypalState } from "./src/paypal/orders";
 import { llmConfigured, isLlmDegraded, resetLlmState } from "./src/agent/llm";
 import { resetGuard } from "./src/agent/guard";
+import { resetMandates } from "./src/routes/mandate";
+import { resetMockOrders } from "./src/paypal/mock";
 
 const app = express();
 app.use(cors());
@@ -32,6 +34,8 @@ app.post("/api/demo/reset", (_req, res) => {
   resetGuard();
   resetPaypalState();
   resetLlmState();
+  resetMandates();
+  resetMockOrders();
   log("system", "demo", "INFO", "Demo state reset");
   res.json({ ok: true });
 });
