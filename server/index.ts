@@ -1,12 +1,16 @@
 import express from "express";
 import cors from "cors";
 import { eventsRouter } from "./src/routes/events";
+import { storefrontRouter } from "./src/routes/storefront";
+import { mandateRouter } from "./src/routes/mandate";
 import { log, reset as resetAudit } from "./src/audit/bus";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api", eventsRouter);
+app.use("/api", storefrontRouter);
+app.use("/api", mandateRouter);
 
 app.get("/api/health", (_req, res) => {
   res.json({

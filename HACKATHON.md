@@ -1,15 +1,13 @@
 # HACKATHON STATE — PayPal AI Hackathon (REAL RUN)
 
-Status: phase-4 | build — **PAUSED for the night. Plan CONFIRMED-in-principle by user
-  stopping voluntarily, NOT approved — on resume, re-ask "Proceed with this plan?" once,
-  then start P1 (scaffold).**
+Status: phase-4 | build — P1 ✅ (slices 1–2) · next: P2 storefront+mandate
 
 ## Resume instructions (for next session)
-1. Read this file + docs/plan.md → confirm plan with user → start Phase 4 P1
-2. Deadline: Nov 12 12:00 PT (12 days from pause) — recompute on resume
+1. Read this file + docs/plan.md → continue from the current build slice
+2. Deadline: Nov 12 12:00 PT (20:00 UTC) — recompute on resume
 3. All research/ideation/blueprint artifacts are on disk and complete
 Deadline: 2026-11-12 12:00 PT (20:00 UTC) — Submissions close
-Time remaining: ~13 days (from Oct 30, 2026)
+Time remaining: ~11 days (as of Nov 1, 2026)
 
 ## Context
 - Hackathon / theme: **PayPal AI Hackathon** — "Build what's next with PayPal and AI"
@@ -57,6 +55,11 @@ Time remaining: ~13 days (from Oct 30, 2026)
 - 2026-10-31: **User chose C+**; instructed "pause after Blueprint" → Phase 4 waits for
   plan confirmation. Phase 3 ran `/plan` (planner subagent, session ses_e6d0f9d22ffebuTbTtXGvYRhKs)
   → docs/plan.md written, AWAITING USER CONFIRMATION.
+- 2026-11-01: Plan CONFIRMED by user at resume gate. Phase 4 build started.
+- 2026-11-01: P1 (slices 1–2) DONE — scaffold, audit bus (SSE+replay), AG Grid spine;
+  typecheck + API smoke + vite build green. Design direction recorded:
+  **"payments control room for delegated AI shopping"** — dark slate, dense mono data,
+  status chips, no gradients/blobs/feature-card grids (design.md gate applies at P11).
 
 ## Artifacts
 - Research brief: docs/research-brief.md ✓ (full: outputs/paypal-ai-hackathon-win.md ✓)
