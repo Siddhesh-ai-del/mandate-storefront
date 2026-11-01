@@ -11,7 +11,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: "npx tsx server/index.ts",
+      command: "npx tsx --env-file-if-exists=.env server/index.ts",
       port: 3001,
       reuseExistingServer: true,
       timeout: 15000,

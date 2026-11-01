@@ -22,6 +22,7 @@ pages are linked here.
 | [submission-checklist.md](submission-checklist.md) | Devpost requirements and pre-submit verification |
 | [screenshot-landing.png](screenshot-landing.png) | App landing state (design reference) |
 | [screenshot-violation.png](screenshot-violation.png) | Violation moment: banner + blocked audit rows |
+| [screenshot-live-llm.png](screenshot-live-llm.png) | Live LLM run: real tool-calling, order captured |
 | [screenshot-375.png](screenshot-375.png) | 375px responsive check |
 
 ## Design

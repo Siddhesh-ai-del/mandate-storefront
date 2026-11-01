@@ -78,6 +78,25 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   docs/video-script.md (2:45 timed), docs/submission-checklist.md (owner actions marked).
   BUILD PHASE COMPLETE. Remaining: GitHub push, video recording, Devpost submission —
   all require the USER's accounts.
+- 2026-11-01: **LIVE LLM WIRED (demo config)** — user provided OpenRouter key (zero
+  credit, local .env only, gitignored). Empirically tested 4 free tool-capable models
+  against the app's exact schema; chose `nvidia/nemotron-3-ultra-550b-a55b:free`
+  (394ms, valid tool_calls; gemma-4-31b 429'd, openrouter/free router nondeterministic).
+  Fix: nothing loaded `.env` (no dotenv) — added Node-native `--env-file-if-exists=.env`
+  to dev/start scripts + Playwright webServer. E2E chip assertion now accepts
+  LIVE|SCRIPTED FALLBACK (CI has no .env → fallback, local demo → LIVE).
+  Note: user's signing secret had been placed in tracked `.env.example` but was
+  caught pre-commit (`git log -S` clean, never pushed) → moved to `.env`, placeholder
+  restored, secret rotated. Live smoke: full UI golden flow via free-text LLM goal —
+  order in 14.4s, captured, evidence docs/screenshot-live-llm.png. Gates with .env
+  present: typecheck, 8/8, build, E2E 3/3.
+- 2026-11-01: **GITHUB REPO PUBLISHED** — https://github.com/Siddhesh-ai-del/mandate-storefront
+  (repo name = product name; MIT per user choice; real CI added per user choice).
+  Product layer committed ffc59fa on top of the 8 build commits; branch renamed
+  master→main. Community profile API verified: readme, license, contributing,
+  code_of_conduct, pull_request_template ALL true. Badge logos verified by byte-size
+  delta (githubactions/opensourceinitiative/nodedotjs/typescript). Security audit
+  clean over full git history before push. CI run 41282270201 on main.
 - 2026-11-01: **UI REPLACED per user call ("UI is trash")** — image-gen had no credits,
   so 5 real-CSS flavor mockups built + Playwright-screenshotted in docs/flavors/
   (neo-brutalist, swiss-precision, phosphor-terminal, warm-premium, consumer-soft).

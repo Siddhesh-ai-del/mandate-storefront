@@ -14,7 +14,8 @@ test("golden flow: compliant purchase captures and decrements the mandate", asyn
 
   // Chips visible immediately (Stage-1 "runs consistently")
   await expect(page.getByText("PayPal: DEMO MODE")).toBeVisible();
-  await expect(page.getByText("LLM: SCRIPTED FALLBACK")).toBeVisible();
+  // Chip reflects config: SCRIPTED FALLBACK with no key (CI), LIVE with .env configured
+  await expect(page.getByText(/LLM: (LIVE|SCRIPTED FALLBACK)/)).toBeVisible();
 
   // Storefront loads
   await expect(page.getByText("Aria HD-700 Over-Ear")).toBeVisible();
