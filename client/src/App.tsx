@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { AuditGrid, type AuditEvent } from "./components/AuditGrid";
 import { Storefront } from "./components/Storefront";
 import { MandateCard, type Mandate } from "./components/MandateCard";
+import { AgentConsole, type RunOutcome } from "./components/AgentConsole";
+import { Banner } from "./components/Banner";
 
 interface Health {
   ok: boolean;
@@ -16,6 +18,7 @@ export default function App() {
   const [mandate, setMandate] = useState<Mandate | null>(null);
   const [signature, setSignature] = useState<string | null>(null);
   const [spentCents, setSpentCents] = useState(0);
+  const [blocked, setBlocked] = useState<RunOutcome | null>(null);
 
   useEffect(() => {
     fetch("/api/health")
@@ -53,6 +56,8 @@ export default function App() {
         </span>
       </header>
 
+      <Banner outcome={blocked} onDismiss={() => setBlocked(null)} />
+
       <main className="panels">
         <section className="panel">
           <h2>Storefront — agent-readable catalog</h2>
@@ -68,12 +73,22 @@ export default function App() {
               setMandate(m);
               setSignature(sig);
               setSpentCents(0);
+              setBlocked(null);
             }}
           />
         </section>
         <section className="panel">
           <h2>Agent Console</h2>
-          <div className="placeholder">Tool loop + the BLOCK lands in P5–P6.</div>
+          <AgentConsole
+            mandateId={mandate?.mandateId ?? null}
+            onApproved={(remainingCents) =>
+              setSpentCents(mandate ? mandate.capCents - remainingCents : spentCents)
+            }
+            onBlocked={setBlocked}
+            onOutcome={(o) => {
+              if (o.status !== "BLOCKED") setBlocked(null);
+            }}
+          />
         </section>
       </main>
 

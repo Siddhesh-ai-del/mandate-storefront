@@ -3,6 +3,7 @@ import cors from "cors";
 import { eventsRouter } from "./src/routes/events";
 import { storefrontRouter } from "./src/routes/storefront";
 import { mandateRouter } from "./src/routes/mandate";
+import { agentRouter } from "./src/routes/agent";
 import { log, reset as resetAudit } from "./src/audit/bus";
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use("/api", eventsRouter);
 app.use("/api", storefrontRouter);
 app.use("/api", mandateRouter);
+app.use("/api", agentRouter);
 
 app.get("/api/health", (_req, res) => {
   res.json({
