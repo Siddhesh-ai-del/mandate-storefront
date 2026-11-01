@@ -1,0 +1,8 @@
+# Default owners for everything in this repository.
+*       @Siddhesh-ai-del
+
+# Security-sensitive paths get explicit ownership.
+/server/src/mandate/   @Siddhesh-ai-del
+/server/src/agent/     @Siddhesh-ai-del
+/server/src/paypal/    @Siddhesh-ai-del
+/.github/              @Siddhesh-ai-del

@@ -1,0 +1,52 @@
+name: Feature request
+description: Propose a capability — problem first, solution second.
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project has an explicit **cut list** (`docs/plan.md`) to protect scope.
+        Proposals that advance the core principles get priority.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem or failure mode does this address? Problem first, always.
+      placeholder: Agents cannot… / Judges cannot… / The audit log cannot…
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should change, at a sketch level.
+    validations:
+      required: true
+  - type: dropdown
+    id: principle
+    attributes:
+      label: Which principle does this advance?
+      options:
+        - Permission is cryptographic
+        - The money path refuses
+        - Honest states (no dead screens)
+        - Auditable by default
+        - Developer experience / tooling
+        - None — explain below
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you evaluated and why they fell short.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: I have read the cut list in `docs/plan.md` and this does not conflict with it (or I explain why the cut should be lifted).
+          required: true
+        - label: I searched existing issues and this is not a duplicate.
+          required: true

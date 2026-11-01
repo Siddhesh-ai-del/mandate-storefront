@@ -1,0 +1,66 @@
+name: Bug report
+description: Report reproducible incorrect behavior in Mandate Storefront.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. **Never include secrets, API keys, or `.env` content**
+        — redact everything sensitive before submitting.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Clear description of the bug and the impact (especially if the mandate guard behaved incorrectly).
+      placeholder: The agent created an order even though…
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps, including which demo button or API call triggered it.
+      placeholder: |
+        1. `npm run dev`
+        2. Mint a mandate with cap $40
+        3. Run the violation goal
+        4. Observe…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Release tag or commit SHA (`git rev-parse --short HEAD`).
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Node.js version, browser (if UI), and which modes are active (PayPal DEMO/SANDBOX, LLM scripted/live).
+      placeholder: |
+        - OS: Ubuntu 24.04
+        - Node: v26.12.1
+        - Browser: Firefox 142
+        - Modes: PayPal DEMO MODE, LLM SCRIPTED FALLBACK
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched existing issues and this is not a duplicate.
+          required: true
+        - label: I have redacted all secrets, keys, and `.env` content from this report.
+          required: true
+        - label: The bug reproduces with a fresh clone (`npm install && npm run dev`).
+          required: true
