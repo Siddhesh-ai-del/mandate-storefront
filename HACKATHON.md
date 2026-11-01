@@ -78,6 +78,17 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   docs/video-script.md (2:45 timed), docs/submission-checklist.md (owner actions marked).
   BUILD PHASE COMPLETE. Remaining: GitHub push, video recording, Devpost submission —
   all require the USER's accounts.
+- 2026-11-01: **VIDEO REHEARSAL + GRID TAIL FIX** — automated rehearsal of the exact
+  recording sequence (chips → mint → canned compliant → capture → re-mint → live-LLM
+  free-text → violation → reset) surfaced a real demo-blocking UX bug: AG Grid
+  virtualization + oldest-first order buried the BLOCKED row below the fold once the
+  log passed ~11 events (my assertion timed out; a judge's eyes would too). Fixed with
+  log-tail behavior in AuditGrid (ensureIndexVisible on new events, only when the
+  reader is at the bottom — never yank someone inspecting history). Re-mint verified
+  (2 clicks, spent resets to 0 via setSpentCents(0)). ALL BEATS PASSED in 18.1s;
+  live-LLM segment measured 11–25s across runs. video-script.md rewritten around the
+  live-LLM beat at ~1:18–1:48 with rehearsal-grounded timings + pre-flight. Gates:
+  typecheck, 8/8, build, E2E 3/3.
 - 2026-11-01: **LIVE LLM WIRED (demo config)** — user provided OpenRouter key (zero
   credit, local .env only, gitignored). Empirically tested 4 free tool-capable models
   against the app's exact schema; chose `nvidia/nemotron-3-ultra-550b-a55b:free`

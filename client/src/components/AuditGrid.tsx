@@ -1,9 +1,13 @@
+import { useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import {
   AllCommunityModule,
   ModuleRegistry,
   themeQuartz,
   type ColDef,
+  type GridApi,
+  type GridReadyEvent,
+  type BodyScrollEvent,
 } from "ag-grid-community";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -54,6 +58,28 @@ const colDefs: ColDef<AuditEvent>[] = [
 ];
 
 export function AuditGrid({ events }: { events: AuditEvent[] }) {
+  const apiRef = useRef<GridApi<AuditEvent> | null>(null);
+  const atBottomRef = useRef(true);
+
+  const onGridReady = (params: GridReadyEvent<AuditEvent>) => {
+    apiRef.current = params.api;
+  };
+
+  // Tail like a log file: keep the newest event in view — unless the reader
+  // scrolled up to inspect history (then never yank them back down).
+  useEffect(() => {
+    const api = apiRef.current;
+    if (!api || !atBottomRef.current) return;
+    const last = api.getDisplayedRowCount() - 1;
+    if (last >= 0) api.ensureIndexVisible(last, "bottom");
+  }, [events.length]);
+
+  const onBodyScroll = (params: BodyScrollEvent<AuditEvent>) => {
+    const last = params.api.getDisplayedRowCount() - 1;
+    const lastNode = last >= 0 ? params.api.getDisplayedRowAtIndex(last) : null;
+    atBottomRef.current = Boolean(lastNode && params.api.getRenderedNodes().includes(lastNode));
+  };
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <AgGridReact
@@ -63,6 +89,8 @@ export function AuditGrid({ events }: { events: AuditEvent[] }) {
         getRowId={(p) => String(p.data.id)}
         animateRows={false}
         defaultColDef={{ sortable: false, resizable: false }}
+        onGridReady={onGridReady}
+        onBodyScroll={onBodyScroll}
       />
     </div>
   );
