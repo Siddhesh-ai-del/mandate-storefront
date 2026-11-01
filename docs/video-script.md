@@ -44,6 +44,8 @@
 - [ ] Voiceover: script once through for practice, then record for real
 - [ ] Verify nothing essential happens after 2:25
 - [ ] Export ≤3:00, upload as **public** on the user's YouTube, paste link into Devpost
+- [ ] **Audio: voiceover only or royalty-free** — no copyrighted music/material
+  (official rule); PayPal is named nominatively only (describing the integration)
 - [ ] Second recording as backup before editing the first
 
 ## Title / YouTube description draft
