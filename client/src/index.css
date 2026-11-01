@@ -404,3 +404,25 @@ body {
 .banner-x:hover {
   color: var(--text);
 }
+
+/* --- Free-text goal (LLM live only) --- */
+.free-goal {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.free-goal input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.free-goal input:focus {
+  outline: none;
+  border-color: var(--accent);
+}

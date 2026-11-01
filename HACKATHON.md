@@ -1,6 +1,6 @@
 # HACKATHON STATE — PayPal AI Hackathon (REAL RUN)
 
-Status: phase-4 | build — P1 ✅ (slices 1–2) · next: P2 storefront+mandate
+Status: phase-4 | build — P3 ✅ (slices 1–7) · next: P4 sandbox+LLM (slices 8–9)
 
 ## Resume instructions (for next session)
 1. Read this file + docs/plan.md → continue from the current build slice
@@ -60,6 +60,12 @@ Time remaining: ~11 days (as of Nov 1, 2026)
   typecheck + API smoke + vite build green. Design direction recorded:
   **"payments control room for delegated AI shopping"** — dark slate, dense mono data,
   status chips, no gradients/blobs/feature-card grids (design.md gate applies at P11).
+- 2026-11-01: P2 (slices 3–4) DONE — storefront catalog + HMAC mandate, TDD 8/8
+  (tamper/expiry/cap/scope/foreign-secret). Commit 830e956.
+- 2026-11-01: P3 (slices 5–7) DONE — agent loop, single-use cart-fingerprint guard,
+  mock Orders v2, approve-as-payer flow, BLOCKED slam banner. Golden flow smoke
+  verified end-to-end (compliant→approve→capture→cap decrement; violation→BLOCKED;
+  double-approve→409). Commit 8235660.
 
 ## Artifacts
 - Research brief: docs/research-brief.md ✓ (full: outputs/paypal-ai-hackathon-win.md ✓)

@@ -4,7 +4,7 @@ import { CATALOG } from "../data/catalog";
 import { verifyMandate } from "../mandate/verify";
 import { mandates } from "../routes/mandate";
 import { consumeVerified, markVerified, type CartFingerprint } from "./guard";
-import { createMockOrder, getMockOrder, approveAndCaptureMock } from "../paypal/mock";
+import { captureCheckoutOrder, createCheckoutOrder, getCheckoutOrder } from "../paypal/orders";
 import { log } from "../audit/bus";
 
 export interface ToolResult {
@@ -81,10 +81,10 @@ export function verifyMandateTool(
   return { ok: result.ok, output: result };
 }
 
-export function createOrder(
+export async function createOrder(
   runId: string,
   args: { mandateId: string; sku: string; amountCents: number; category: string }
-): ToolResult {
+): Promise<ToolResult> {
   const allowed = consumeVerified({ runId, ...args });
   if (!allowed) {
     log(
@@ -96,7 +96,7 @@ export function createOrder(
     );
     throw new MandateViolationError("NO_VERIFIED_MANDATE");
   }
-  const order = createMockOrder(args.amountCents, args.sku, args.mandateId);
+  const order = await createCheckoutOrder(args.amountCents, args.sku, args.mandateId);
   log(
     "agent",
     "create_order",
@@ -107,8 +107,8 @@ export function createOrder(
   return { ok: true, output: { orderId: order.orderId, status: order.status } };
 }
 
-export function captureOrder(runId: string, args: { orderId: string }): ToolResult {
-  const order = approveAndCaptureMock(args.orderId);
+export async function captureOrder(runId: string, args: { orderId: string }): Promise<ToolResult> {
+  const order = await captureCheckoutOrder(args.orderId);
   const mandate = mandates.get(order.mandateId);
   if (mandate) mandate.spentCents += order.amountCents;
   const remaining = mandate ? mandate.payload.capCents - mandate.spentCents : 0;
@@ -130,6 +130,6 @@ export class MandateViolationError extends Error {
   }
 }
 
-export function getOrder(orderId: string) {
-  return getMockOrder(orderId);
+export async function getOrder(orderId: string) {
+  return getCheckoutOrder(orderId);
 }

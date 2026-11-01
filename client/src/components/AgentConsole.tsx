@@ -34,16 +34,18 @@ const reasonText = (code?: string) =>
 
 interface Props {
   mandateId: string | null;
+  llmLive: boolean;
   onApproved: (remainingCents: number) => void;
   onBlocked: (outcome: RunOutcome) => void;
   onOutcome: (outcome: RunOutcome) => void;
 }
 
-export function AgentConsole({ mandateId, onApproved, onBlocked, onOutcome }: Props) {
+export function AgentConsole({ mandateId, llmLive, onApproved, onBlocked, onOutcome }: Props) {
   const [goals, setGoals] = useState<Goals | null>(null);
   const [running, setRunning] = useState<string | null>(null);
   const [outcome, setOutcome] = useState<RunOutcome | null>(null);
   const [approving, setApproving] = useState(false);
+  const [freeText, setFreeText] = useState("");
 
   useEffect(() => {
     fetch("/api/agent/goals")
@@ -90,6 +92,29 @@ export function AgentConsole({ mandateId, onApproved, onBlocked, onOutcome }: Pr
     }
   }
 
+  async function runFree() {
+    if (!mandateId || running || !freeText.trim()) return;
+    setRunning("free");
+    setOutcome(null);
+    try {
+      const res = await fetch("/api/agent/run-free", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goalText: freeText.trim(), mandateId, fallbackGoal: "compliant" }),
+      });
+      if (res.status === 409) {
+        setRunning(null);
+        return; // LLM went away — canned buttons remain
+      }
+      const body = (await res.json()) as RunOutcome;
+      setOutcome(body);
+      onOutcome(body);
+      if (body.status === "BLOCKED") onBlocked(body);
+    } finally {
+      setRunning(null);
+    }
+  }
+
   const disabled = !mandateId;
 
   return (
@@ -117,6 +142,21 @@ export function AgentConsole({ mandateId, onApproved, onBlocked, onOutcome }: Pr
         <p className="muted console-hint">
           Mint a mandate first — the agent refuses to act without one.
         </p>
+      )}
+
+      {llmLive && (
+        <div className="free-goal">
+          <input
+            value={freeText}
+            onChange={(e) => setFreeText(e.target.value)}
+            placeholder="Free-text goal (LLM live)… e.g. buy the sturdiest stand under $20"
+            onKeyDown={(e) => e.key === "Enter" && runFree()}
+            disabled={disabled || running !== null}
+          />
+          <button className="btn" onClick={runFree} disabled={disabled || running !== null || !freeText.trim()}>
+            {running === "free" ? "Agent thinking…" : "Run goal"}
+          </button>
+        </div>
       )}
 
       {outcome?.status === "AWAITING_APPROVAL" && (

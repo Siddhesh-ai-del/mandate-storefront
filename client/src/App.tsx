@@ -8,6 +8,7 @@ import { Banner } from "./components/Banner";
 interface Health {
   ok: boolean;
   paypalMode: string;
+  paypalDegraded?: boolean;
   llmMode: string;
 }
 
@@ -81,6 +82,7 @@ export default function App() {
           <h2>Agent Console</h2>
           <AgentConsole
             mandateId={mandate?.mandateId ?? null}
+            llmLive={health?.llmMode === "LIVE"}
             onApproved={(remainingCents) =>
               setSpentCents(mandate ? mandate.capCents - remainingCents : spentCents)
             }

@@ -107,7 +107,7 @@ export async function runGoal(goalId: GoalId, mandateId: string): Promise<RunOut
     return { goalId, runId, status: "BLOCKED", blockedReason: reason, pickedSku: best.sku };
   }
 
-  const order = createOrder(runId, {
+  const order = await createOrder(runId, {
     mandateId,
     sku: best.sku,
     amountCents: best.priceCents,
